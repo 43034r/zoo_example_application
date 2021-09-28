@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>Dynatrace JavaScript API</title>
+        <link href="../global.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="../global.js"></script>
+        <script type="text/javascript" >
+            function postMessageDuringLoad() {
+                dtrum.reportError('Error: Hello World!');
+            }
+        </script>
+	</head>
+    <body onload="postMessageDuringLoad()" on>
+            <div class="explanation">
+                <h2>Execute reportError functions</h2>
+                <div class="field">
+                    <div class="fieldHeader"> Agentconfig</div>
+                    Needed agent module configuration: <div class="agentConf">no extra modules<div class="agentConfCheck"></div></div>
+                </div>
+                <p>This example reports a javascript error(  <a href='../../doc/classes/dtrum.html#reporterror' class='api-reference' target='_blank'>reportError</a> ) in the <code>onload</code> event handler.
+                    The error is automatically appended to the currently running <code>onload</code> action.</p>
+            </div>
+            <div class="field">
+                <div class="fieldHeader"> Code snippet</div>
+                <code-block>//called in onload
+function postMessageDuringLoad() {
+    dtrum.reportError('Error: Hello World!');
+}</code-block>
+            </div>
+            <div class="field example">
+            <div class="fieldHeader"> Example</div>
+                <p>This page posts an error during the onload action!</p>
+            </div>
+        <a class="backButton" href="../index.html"> &#x2B05; Back</a>
+    </body>
+</html>

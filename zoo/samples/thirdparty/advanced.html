@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<title>Dynatrace JavaScript API</title>
+        <link href="../global.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="../global.js"></script>
+        <script type="text/javascript">
+            var cssUrl = location.href.substring(0, location.href.lastIndexOf('/')) + '/test.css';
+
+            var cssElement;
+
+            function checkLoaded() {
+                var sheet, cssRules;
+                // get the correct properties to check for depending on the browser
+                if ('sheet' in cssElement) {
+                    sheet = 'sheet';
+                    cssRules = 'cssRules';
+                } else {
+                    sheet = 'styleSheet';
+                    cssRules = 'rules';
+                }
+
+                try {
+                    if (cssElement[sheet] && cssElement[sheet][cssRules] && cssElement[sheet][cssRules].length > 0) {
+                        dtrum.stopThirdParty(cssUrl, true, -1, -1);
+                        return;
+                    }
+                } catch (e) {
+                    //unfinished
+                }
+
+                //when file not loaded yet, reschedule check in 20 ms
+                setTimeout(checkLoaded, 20);
+            }
+
+            function init() {
+                //add a css file dynamically
+                dtrum.startThirdParty('c', cssUrl);
+                cssElement = document.createElement('link');
+                cssElement.setAttribute('rel', 'stylesheet');
+                cssElement.setAttribute('type', 'text/css');
+                cssElement.setAttribute('href', cssUrl);
+
+                var head = document.getElementsByTagName('head')[0];
+                head.appendChild(cssElement);
+
+                //check if file loaded
+                checkLoaded();
+            }
+        </script>
+	</head>
+    <body onload="init()">
+        <div class="explanation">
+            <h2>Advanced third party by adding Custom CSS Files</h2>
+            <div class="field">
+                <div class="fieldHeader"> Agentconfig</div>
+                Needed agent module configuration: <div class="agentConf">W3C resource timing for third party/CDN<div class="agentConfCheck"></div></div>
+            </div>
+            <p>The JavaScript Agent supports detection of third-party resources.
+                The automatic detection works for images and scripts.
+                Use the following functions to report additional third-party resources:</p>
+            <p><a href='../../doc/classes/dtrum.html#startthirdparty' class='api-reference' target='_blank'>startThirdParty</a> indicates the start of a third-party resource.
+            <p><a href='../../doc/classes/dtrum.html#stopthirdparty' class='api-reference' target='_blank'>stopThirdParty</a> indicates when the third-party resource is loaded.</p>
+            <p>This example demonstrates how to detect the successful loading of a CSS file.
+                It dynamically adds a link tag for the CSS, and then checks whether the number of styles is greater than zero, in 20-millisecond intervals.</p>
+        </div>
+        <div class="field">
+            <div class="fieldHeader"> Code snippet</div>
+            <code-block>dtrum.startThirdParty('c', cssUrl);
+
+// loading of the ThirdParty content
+
+dtrum.stopThirdParty(cssUrl, true, -1, -1);</code-block>
+        </div>
+        <div class="field example">
+            <div class="fieldHeader"> Example</div>
+            <p>Custom css is added to this content example by javascript.</p>
+        </div>
+        <a class="backButton" href="../index.html"> &#x2B05; Back</a>
+    </body>
+</html>
