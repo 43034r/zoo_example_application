@@ -124,8 +124,8 @@ xhr.addEventListener("readystatechange", function () {
  }
 });
 
-dtrum.identifyUser(customerEmail.value);
-xhr.open("POST", "http://192.168.1.120/app/ticket-booking-service/v1/venue/seats/hold");
+<!--dtrum.identifyUser(customerEmail.value); -->
+xhr.open("POST", "/app/ticket-booking-service/v1/venue/seats/hold");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("cache-control", "no-cache");
 xhr.send(data);
@@ -152,7 +152,7 @@ xhr.addEventListener("readystatechange", function () {
  }
 });
 
-xhr.open("POST", "http://192.168.1.120/app/ticket-booking-service/v1/venue/seats/reserve");
+xhr.open("POST", "/app/ticket-booking-service/v1/venue/seats/reserve");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("cache-control", "no-cache");
 xhr.send(data);
@@ -164,7 +164,7 @@ function g()
 {
 var xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
-xhr.open("POST", "http://192.168.1.120/app/ticket-booking-service/v1/error");
+xhr.open("POST", "/app/ticket-booking-service/v1/error");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("cache-control", "no-cache");
 xhr.send(data);
