@@ -1,6 +1,7 @@
 FROM nginx:1.16
 COPY zoo /usr/share/nginx/html/
 COPY default.conf /etc/nginx/conf.d
+COPY nginx.conf /etc/nginx/
 ENV SOME=SOME2
 ENV DT_RELEASE_VERSION=0.75
 ENV DT_RELEASE_STAGE=Test
