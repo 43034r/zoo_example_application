@@ -129,7 +129,7 @@ xhr.open("POST", "/app/ticket-booking-service/v1/venue/seats/hold");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("cache-control", "no-cache");
 xhr.send(data);
-dtrum.actionName('Custom Book');
+<!--dtrum.actionName('Custom Book'); -->
 dtrum.removeEnterActionListener(addStringProperties);
 }
 
