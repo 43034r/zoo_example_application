@@ -14,6 +14,20 @@ server {
         root   /usr/share/nginx/html;
         index  index.html index.htm;
     }
+    location /zoo/app/ {
+		resolver kube-dns.kube-system.svc.cluster.local valid=5s;
+#        rewrite ^/zoo/app/(.*) /$1 break;
+#        proxy_pass http://$host/$uri$is_args$args;
+        rewrite ^/zoo/app(/.*)$ $1 break;
+		proxy_pass http://zoo-service-backend.zoo-app.svc.cluster.local:99$uri$is_args$args;
+#proxy_pass http://zoo-service-backend:99$uri$is_args$args;
+#        proxy_pass http://app;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+
+
 
     location /app/ {
 		resolver kube-dns.kube-system.svc.cluster.local valid=5s;
