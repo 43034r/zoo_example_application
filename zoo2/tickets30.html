@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!-- Template by freewebsitetemplates.com -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Zoo</title>
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+	</head>
+
+
+	<body>
+		<div id="page">
+			<div id="header">
+				<a href="index.html" id="logo"><img src="images/logo-page.jpg" alt=""/></a>
+				<ul id="links">
+					<li class="first">
+						<h2><a href="live.html">Live</a></h2>
+						<span>Have fun in your visit</span>
+					</li>
+					<li>
+						<h2><a href="live.html">Love</a></h2>
+						<span>Donate for the animals</span>
+					</li>
+					<li>
+						<h2><a href="live.html">Learn</a></h2>
+						<span>Get to know the animals</span>
+					</li>
+				</ul>
+				<a href="tickets.html" id="button">Buy tickets / Check Events</a>
+				<ul id="navigation">
+					<li id="link1"><a href="index.html">Home</a></li>
+					<li id="link2"><a href="zoo.html">The Zoo</a></li>
+					<li id="link3"><a href="info.html">Visitors Info</a></li>
+					<li id="link4" class="selected"><a href="tickets.html">Tickets</a></li>
+					<li id="link5"><a href="events.html">Events</a></li>
+					<li id="link6"><a href="gallery.html">Gallery</a></li>
+					<li id="link7"><a href="contact.html">Contact Us</a></li>
+				</ul>
+			</div>
+			<div id="content">
+				<div id="tickets"> number of seats available:
+					<h1> <div id="all"> 1 </div></h1>					
+					<h1>Avaliable</h1>
+					
+					<p>You can check and booking ticket here:</p>
+		
+
+
+<script type="text/javascript"> var long = { summ: 123}; dtrum.sendSessionProperties(long); </script>
+
+<input type="button" value="Error" name="e" OnClick="g();">
+
+<input type="button" value="Book" name="a" data-dtname="Book with data-dtname" OnClick="a();">
+<input type="text" value="5" name="numSeats" id="numSeats" >
+<input type="text" value="some@gmail.com" name="customerEmail" id="customerEmail" >
+<p>==================</p>
+
+
+
+
+
+<p> Your ID:</p>
+<div id="secondspace" style="visibility: hidden;"> </div>
+<input type="button" value="Confirm" name="b" OnClick="b();">
+<input type="text" value="?" name="dd" id="dd" >
+<p>==================</p>
+<p> Your Confirm Code:</p>
+<div id="3space" style="visibility: hidden;"> </div>
+<p>==================</p>
+<p></p>
+<p>РџРѕСЃС‚Р°РІСЊ Р»Р°Р№Рє РµСЃР»Рё РїРѕРЅСЂР°РІРёР»РѕСЃСЊ</p>
+ <div id="like_button_container"></div>
+<p>==================</p>
+
+<p>Р’С‹ РЅР°С…РѕРґРёС‚РµСЃСЊ РЅР° СЃС‚СЂР°РЅРёС†Рµ СѓР¶Рµ:</p>
+ <div id="timer-example"></div>
+
+ 
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+<!-- Load our React component. -->
+ <script src="like_button.js"> </script>
+
+
+<script "javascript">
+
+
+         
+
+</script>
+
+
+
+<script "javascript"> 
+
+
+function a()
+{
+    var data = JSON.stringify({
+  "numSeats": numSeats.value,
+  "customerEmail": customerEmail.value,
+  "minLevel": "1",
+  "maxLevel": "4"
+});
+var str = {seats_str3: numSeats.value};
+
+
+
+
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+    document.getElementById('secondspace').style.visibility="visible"; 
+    document.getElementById('secondspace').innerHTML=this.responseText.substring(1, 9);
+ }
+});
+
+<!--dtrum.identifyUser(customerEmail.value); -->
+xhr.open("POST", "http://192.168.1.120/app/ticket-booking-service/v1/venue/seats/hold");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("cache-control", "no-cache");
+xhr.send(data);
+}
+
+function b()
+{
+    var data = JSON.stringify({
+  "seatHoldId": dd.value,
+  "customerEmail": customerEmail.value,
+});
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+    document.getElementById('3space').style.visibility="visible"; 
+    document.getElementById('3space').innerHTML=this.responseText.substring(51, 150);
+ 
+ }
+});
+
+xhr.open("POST", "http://192.168.1.120/app/ticket-booking-service/v1/venue/seats/reserve");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("cache-control", "no-cache");
+xhr.send(data);
+
+}
+
+
+function g()
+{
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+xhr.open("POST", "http://192.168.1.120/app/ticket-booking-service/v1/error");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.setRequestHeader("cache-control", "no-cache");
+xhr.send(data);
+
+}
+
+
+</script>
+
+
+
+<script>
+// 1. Создаём новый объект XMLHttpRequest
+var xhr = new XMLHttpRequest();
+// 2. Конфигурируем его: GET-запрос на URL 'phones.json'
+xhr.open('GET', 'app/ticket-booking-service/v1/venue/seats', false);
+// 3. Отсылаем запрос
+xhr.send();
+// 4. Если код ответа сервера не 200, то это ошибка
+if (xhr.status != 200) {
+  // обработать ошибку
+  alert( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
+} else {
+  // вывести результат
+ // alert( xhr.responseText ); // responseText -- текст ответа.
+document.getElementById('all').innerHTML = xhr.responseText;
+}
+</script>
+
+</html>  

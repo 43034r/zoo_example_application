@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>Dynatrace JavaScript API</title>
+        <link href="../global.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="../global.js"></script>
+        <script type="text/javascript">
+            //add 3p resource
+            var thirdPartyUrl = location.href.substring(0, location.href.lastIndexOf('/')) + '/test.css';
+
+            dtrum.startThirdParty('c', thirdPartyUrl);
+            //load resources and detect when finished. set start and stop time automatically
+            cssElement = document.createElement('link');
+            cssElement.setAttribute('rel', 'stylesheet');
+            cssElement.setAttribute('type', 'text/css');
+            cssElement.setAttribute('href', thirdPartyUrl);
+
+            var head = document.getElementsByTagName('head')[0];
+            head.appendChild(cssElement);
+            dtrum.stopThirdParty(thirdPartyUrl, true);
+
+            var now = dtrum.now();
+            thirdPartyUrl = 'http://cdn.ruxitApi.com/css/thirdparty2.css';
+            dtrum.startThirdParty('c', thirdPartyUrl);
+            //pass custom start and stop times
+            dtrum.stopThirdParty(thirdPartyUrl, true, now, now + 1000);
+
+        </script>
+	</head>
+    <body>
+        <div class="explanation">
+            <h2>Simple third party by adding Custom CSS Files</h2>
+            <div class="field">
+                <div class="fieldHeader"> Agentconfig</div>
+                Needed agent module configuration: <div class="agentConf">W3C resource timing for third party/CDN<div class="agentConfCheck"></div></div>
+            </div>
+            <p>The JavaScript Agent supports detection of third-party resources.
+                The automatic detection works for images and scripts.
+                Use the following functions to report additional third-party resources:</p>
+            <p><a href='../../doc/classes/dtrum.html#startthirdparty' class='api-reference' target='_blank'>startThirdParty</a> indicates the start of a third-party resource.
+            <p><a href='../../doc/classes/dtrum.html#stopthirdparty' class='api-reference' target='_blank'>stopThirdParty</a> indicates when the third-party resource is loaded.</p>
+            <p>This example demonstrates how to add custom resources.
+                It adds a CSS file where start and stop times are set automatically, and another CSS file where start and stop time are set explicitly.</p>
+        </div>
+        <div class="field">
+            <div class="fieldHeader"> Code snippet</div>
+            <code-block>dtrum.startThirdParty('c', thirdPartyUrl);
+//pass custom start and stop times
+dtrum.stopThirdParty(thirdPartyUrl, true, now, now + 1000);</code-block>
+        </div>
+        <div class="field example">
+            <div class="fieldHeader"> Example</div>
+            <p>Custom css is added to this content example by javascript.</p>
+        </div>
+        <a class="backButton" href="../index.html"> &#x2B05; Back</a>
+    </body>
+</html>

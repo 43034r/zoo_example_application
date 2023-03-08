@@ -1,6 +1,6 @@
 FROM nginx:1.16
 COPY zoo /usr/share/nginx/html/
-COPY zoo /usr/share/nginx/html/zoo/
+COPY zoo2 /usr/share/nginx/html/zoo/
 COPY default.conf /etc/nginx/conf.d
 COPY nginx.conf /etc/nginx/
 ENV SOME=SOME2
