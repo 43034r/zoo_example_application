@@ -1,0 +1,44 @@
+
+user  nginx;
+worker_processes  1;
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+#    upstream app {
+ #       resolver kube-dns.kube-system.svc.cluster.local valid=5s;
+  #      zoo-service-backend.zoo-app.svc.cluster.local:99;
+   #     zoo-service-backend.zoo-app-gke.svc.cluster.local:99;
+    #    zoo-service-backend.zoo-app-aws.svc.cluster.local:99;
+     #}
+
+
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    include /etc/nginx/conf.d/*.conf;
+}
